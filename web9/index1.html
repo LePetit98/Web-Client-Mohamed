@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Book {
+  constructor(title, author, yearPublished) {
+    this.title = title;
+    this.author = author;
+    this.yearPublished = yearPublished;
+    this.isAvailable = true; 
+  }
+}
+class Library {
+  constructor() {
+    this.books = []; 
+  }
+
+  
+  addBook(book) {
+    this.books.push(book);
+    console.log(`Added "${book.title}" to the library.`);
+  }
+
+  
+  borrowBook(title) {
+    const book = this.books.find((book) => book.title === title);
+    if (book) {
+      if (book.isAvailable) {
+        book.isAvailable = false;
+        console.log(`You have borrowed "${title}".`);
+      } else {
+        console.log(`"${title}" is already borrowed.`);
+      }
+    } else {
+      console.log(`"${title}" not found in the library.`);
+    }
+  }
+
+  
+  returnBook(title) {
+    const book = this.books.find((book) => book.title === title);
+    if (book) {
+      if (!book.isAvailable) {
+        book.isAvailable = true;
+        console.log(`You have returned "${title}".`);
+      } else {
+        console.log(`"${title}" is already available.`);
+      }
+    } else {
+      console.log(`"${title}" not found in the library.`);
+    }
+  }
+
+ 
+  getAvailableBooks() {
+    return this.books.filter((book) => book.isAvailable);
+  }
+
+  
+  listAllBooks() {
+    console.log("All Books in the Library:");
+    for (let i = 0; i < this.books.length; i++) {
+      const book = this.books[i];
+      console.log(
+        `Title: ${book.title}, Author: ${book.author}, Year Published: ${book.yearPublished}, Available: ${book.isAvailable}`
+      );
+    }
+  }
+
+  
+  removeBook(title) {
+    const index = this.books.findIndex((book) => book.title === title);
+    if (index !== -1) {
+      this.books.splice(index, 1);
+      console.log(`Removed "${title}" from the library.`);
+    } else {
+      console.log(`"${title}" not found in the library.`);
+    }
+  }
+
+  
+  getAllBookTitles() {
+    return this.books.map((book) => book.title);
+  }
+}
+const myLibrary = new Library();
+
+
+myLibrary.addBook(new Book("1984", "George Orwell", 1949));
+myLibrary.addBook(new Book("To Kill a Mockingbird", "Harper Lee", 1960));
+myLibrary.addBook(new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925));
+
+
+myLibrary.listAllBooks();
+
+
+myLibrary.borrowBook("1984");
+myLibrary.borrowBook("1984"); 
+
+
+myLibrary.returnBook("1984");
+
+
+console.log("Available Books:", myLibrary.getAvailableBooks());
+
+
+console.log("All Book Titles:", myLibrary.getAllBookTitles());
+
+
+myLibrary.removeBook("The Great Gatsby");
+myLibrary.listAllBooks();
+    </script>
+</body>
+</html>

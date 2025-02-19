@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       class Person{
+        constructor(name,age,email,birthdate){
+            this.name=name,
+            this.age=age,
+            this.email=email,
+            this.birthdate=birthdate
+        }
+       }
+       introduceperson=()=>{
+        console.log("n"+this.name+"age"+this.age+"mail"+this.email+"bithday"+this.birthdate)
+       }
+
+       celebrateBirthday(){
+        
+        const today =new Date();
+        console.log(today.getDate()+today.getMonth()+today.getFullYear());
+        const birthDate= new Date(this.birthDate);
+        if(today.getDate()===birthDate.getDate()&& today.getMonth()===birthDate.getMonth()){
+            this.age++;
+            console.log("happy birthday dear"+this.name);
+        }else{
+            console.log("sry");
+        }
+       }
+
+
+       const person1= new Person("jack",28,"jack@gmail.com","2002-03-07");
+    </script>
+</body>
+</html>
